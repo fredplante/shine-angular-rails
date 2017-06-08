@@ -2,6 +2,9 @@
   "name": "shine-angular-rails",
   "private": true,
   "dependencies": {
-    "bootstrap-sass": "^3.3.7"
+    "bootstrap-sass": "^3.3.7",
+    "angular": "^1.6.4",
+    "angular-mocks": "^1.6.4",
+    "angular-route": "^1.6.4"
   }
 }

@@ -41,5 +41,16 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'haml'
+gem 'devise'
+gem 'faker'
+
+group :development, :test do
+  gem 'fuubar'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'poltergeist'
+  gem 'database_cleaner'
+  gem 'teaspoon-jasmine'
+end
+
+gem 'angular-rails-templates'

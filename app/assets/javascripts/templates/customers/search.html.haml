@@ -1,0 +1,45 @@
+%header
+  %h1.h2 Customer Search
+
+%section.search-form
+  %form
+    %label.sr-only{ for: 'keywords' }
+    %input{ type: 'text',
+            name: 'keywords',
+            class: 'form-control input-lg',
+            'ng-model': 'vm.keywords',
+            'ng-change': 'vm.search(vm.keywords)',
+            placeholder: 'First Name, Last Name, or Email' }
+  %h1.searchedFor{ 'ng-if': 'vm.searchedFor' }
+    %small Searched for: {{vm.searchedFor}}
+
+%section.search-results{ 'ng-if': 'vm.customers.length > 0' }
+  %header
+    %h1.h3 Results
+
+  %nav
+    %ul.pager
+      %li.previous
+        %a{ href: '', 'ng-click': 'vm.previousPage()' } &larr; Previous
+      %li.next
+        %a{ href: '', 'ng-click': 'vm.nextPage()' } Next &rarr;
+
+  %ol.list-group
+    %li.list-group-item.clearfix{ 'ng-repeat': 'customer in vm.customers' }
+      %h3.pull-right
+        %small.text-uppercase Joined
+        {{customer.created_at | date}}
+      %h2.h3
+        {{customer.first_name}} {{customer.last_name}}
+        %small {{customer.username}}
+      .pull-right
+        %button{ class: 'btn btn-small btn-primary',
+          'ng-click': 'vm.viewDetails(customer)' } View Details...
+      %h4 {{customer.email}}
+
+  %nav
+    %ul.pager
+      %li.previous
+        %a{ href: '', 'ng-click': 'vm.previousPage()' } &larr; Previous
+      %li.next
+        %a{ href: '', 'ng-click': 'vm.nextPage()' } Next &rarr;

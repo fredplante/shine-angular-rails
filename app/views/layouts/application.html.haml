@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title Shine
+    = csrf_meta_tags
+
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+
+  %body.container
+    - if notice.present?
+      %aside.alert.alert-info
+        = notice
+    - if alert.present?
+      %aside.alert.alert-danger
+        = alert
+    = yield

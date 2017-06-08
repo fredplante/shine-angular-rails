@@ -1,0 +1,82 @@
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  TargetRubyVersion: 2.3
+  Exclude:
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+
+# Performance ------------------------------------------------------------------
+
+Performance:
+  Enabled: true
+
+Performance/Casecmp:
+  Enabled: false
+
+
+# Rails ------------------------------------------------------------------------
+
+Rails:
+  Enabled: true
+  Exclude:
+    - 'db/compute.rb'
+
+Rails/Blank:
+  UnlessPresent: false
+  Exclude:
+    - engines/jobs/lib/jobs/rack_monkey_patch.rb
+
+Rails/DynamicFindBy:
+  Whitelist:
+    - find_by_codfichier
+    - find_by_coordinates
+
+Rails/FilePath:
+  Exclude:
+    - 'config/environments/development.rb'
+    - 'engines/factory/app/jobs/factory/edigeo/unarchive_job.rb'
+    - 'engines/factory/lib/factory/dump.rb'
+    - 'engines/factory/lib/factory/migrator.rb'
+    - 'engines/factory/lib/factory/populator.rb'
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/Output:
+  Exclude:
+    - 'config/dotenv.rb'
+
+Rails/ReversibleMigration:
+  Enabled: false
+  # https://github.com/bbatsov/rubocop/issues/4063
+
+Rails/SkipsModelValidations:
+  Enabled: false
+  Exclude:
+    - 'app/models/concerns/quick_save.rb'
+
+# Lint -------------------------------------------------------------------------
+
+Lint:
+  Enabled: true
+
+Lint/HandleExceptions:
+  Enabled: false
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+  # https://github.com/bbatsov/rubocop/issues/4189
+
+# Style ------------------------------------------------------------------------
+
+Style:
+  Enabled: false
+
+# Metrics ----------------------------------------------------------------------
+
+Metrics:
+  Enabled: false

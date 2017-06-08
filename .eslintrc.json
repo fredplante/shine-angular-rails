@@ -1,0 +1,33 @@
+{
+  "extends": "google",
+  "rules": {
+    "require-jsdoc":        "off",
+    "no-invalid-this":      "off",
+    "no-var":               "off",
+    "max-len":              "off",
+    "prefer-spread":        "off",
+    "prefer-rest-params":   "off",
+    "indent":               ["error", 2, {
+      "VariableDeclarator": 2
+    }],
+    "linebreak-style":      ["error", "unix"],
+    "quotes":               ["error", "single", {
+      "avoidEscape": true
+    }],
+    "semi":                 ["error", "never"],
+    "object-curly-spacing": ["error", "always"],
+    "comma-dangle":         ["error", "never"],
+    "key-spacing":          ["error", {
+      "mode": "minimum"
+    }],
+    "spaced-comment": ["error", "always", {
+      "markers": ["="]
+    }],
+    "no-multi-spaces":      ["error", {
+      "exceptions": {
+        "VariableDeclarator": true,
+        "AssignmentExpression": true
+      }
+    }]
+  }
+}
