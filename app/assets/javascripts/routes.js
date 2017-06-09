@@ -10,11 +10,11 @@
     $routeProvider.when('/', {
       controller: 'CustomerSearchController',
       controllerAs: 'vm',
-      templateUrl: 'customers/search.html'
+      templateUrl: 'templates/customers/search.html'
     }).when('/:id', {
       controller: 'CustomerShowController',
       controllerAs: 'vm',
-      templateUrl: 'customers/show.html'
+      templateUrl: 'templates/customers/show.html'
     })
   }
 })(window.angular)

@@ -52,5 +52,3 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'teaspoon-jasmine'
 end
-
-gem 'angular-rails-templates'

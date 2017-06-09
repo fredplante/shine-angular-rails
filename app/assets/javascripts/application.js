@@ -13,10 +13,8 @@
 //= require rails-ujs
 //= require angular
 //= require angular-route
-//= require angular-rails-templates
 //= require_self
 //= require ./routes
-//= require_tree ./templates
 //= require_tree ./controllers
 
-angular.module('app', ['ngRoute', 'templates'])
+angular.module('app', ['ngRoute'])
