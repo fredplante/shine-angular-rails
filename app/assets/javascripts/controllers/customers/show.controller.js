@@ -5,26 +5,13 @@
     .module('app')
     .controller('CustomerShowController', CustomerShowController)
 
-  CustomerShowController['$inject'] = ['$http', '$location', '$routeParams']
-  function CustomerShowController($http, $location, $routeParams) {
+  CustomerShowController['$inject'] = ['$http', '$location', '$routeParams', '$resource']
+  function CustomerShowController($http, $location, $routeParams, $resource) {
     var vm = this
+    vm.customerId = $routeParams.id
+    var Customer = $resource('/customers/:customerId.json')
 
-    var customerId = $routeParams.id
 
-    vm.customer = {}
-
-    init()
-
-    // -------------------------------------------------------------------------
-
-    function init() {
-      $http.get('/customers/' + customerId + '.json')
-        .then(function(response) {
-          vm.customer = response.data
-        }, function(response) {
-          alert('There was a problem: ' + response.status)
-        }
-      )
-    }
+    vm.customer = Customer.get({ 'customerId': vm.customerId })
   }
 })(window.angular)

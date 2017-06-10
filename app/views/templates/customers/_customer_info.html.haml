@@ -6,28 +6,28 @@
       .col-md-4
         .form-group
           %label.sr-only{ for: 'first-name' } First Name
-          %input.form-control{ type: 'text',
-                                name: 'first-name', value: 'Bob' }
+          %input.form-control{ type: 'text', name: 'first-name',
+                              'ng-model': 'vm.customer.first_name' }
       .col-md-4
         .form-group
           %label.sr-only{ for: 'last-name' } Last Name
-          %input.form-control{ type: 'text',
-                                name: 'last-name', value: 'Jones' }
+          %input.form-control{ type: 'text', name: 'last-name',
+                                'ng-model': 'vm.customer.last_name' }
       .col-md-4
         .form-group
           %label.sr-only{ for: 'username' } Username
           .input-group
             .input-group-addon @
-            %input.form-control{ type: 'text',
-                                  name: 'username', value: 'bobers123' }
+            %input.form-control{ type: 'text', name: 'username',
+                                  'ng-model': 'vm.customer.username' }
       .col-md-12
         .form-group
           %label.sr-only{ for: 'email' } Email
           %input.form-control{ type: 'text', name: 'email',
-                              value: 'bobbyj@somewhere.net' }
+                              'ng-model': 'vm.customer.email' }
   %footer.panel-footer
     %label{ for: 'joined' } Joined
-    12/13/2014
+    {{ customer.joined_at | date }}
 %article.panel.panel-default
   %header.panel-heading
     %h2.h4 Shipping Address
@@ -35,21 +35,17 @@
     .form-group
       %label.sr-only{ for: 'street-address' } Street Address
       %input.form-control{ type: 'text', name: 'street-address',
-                            value: '123 Any St' }
-    .form-group
-      %label.sr-only{ for: 'street-address-extra' } Street Address Extra
-      %input.form-control{ type: 'text', name: 'street-address-extra',
-                            value: 'Unit 101' }
+                            'ng-model': 'vm.customer.shipping_street' }
     .row.form-group
       .col-md-6
         %label.sr-only{ for: 'city' } City
         %input.form-control{ type: 'text', name: 'city',
-                            value: 'Washington' }
+                            'ng-model': 'vm.customer.shipping_city' }
       .col-md-2
         %label.sr-only{ for: 'state' } State
         %input.form-control{ type: 'text', name: 'state',
-                              value: 'DC' }
+                              'ng-model': 'vm.customer.shipping_state' }
       .col-md-4
         %label.sr-only{ for: 'zip' } Zip
         %input.form-control{ type: 'text', name: 'zip',
-                              value: '20001' }
+                              'ng-model': 'vm.customer.shipping_zipcode' }

@@ -14,3 +14,6 @@
  *= require bootstrap-sass
  *= require_self
  */
+.progress-bar {
+  width: 100%;
+}

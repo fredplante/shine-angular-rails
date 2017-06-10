@@ -2,17 +2,25 @@
   %header.panel-heading
     %h2.h4 Billing Info
   %section.panel-body
-    %article
+    %article{ 'ng-controller': 'CustomerCreditCardController as vm',
+              'ng-init': 'vm.setCardholderId($parent.vm.customerId)' }
       .row
-        .col-md-7
-          %p.h4
-            ****-****-****-1234
-            %span.label.label-success VISA
-          %p.h5
-            %label Expires :
-            04/19
-        .col-md-5.text-right
-          %button.btn.btn-lg.btn-default View Details...
+        %div{ 'ng-if': '!vm.creditCard.$resolved' }
+          .col-md-10.col-md-offset-1
+            %aside.progress
+              .progress-bar.progress-bar-striped.active
+                Loading...
+        %div{ 'ng-if': 'vm.creditCard.$resolved' }
+          .col-md-7
+            %p.h4
+              ****-****-****-{{vm.creditCard.lastFour}}
+              %span.label.label-success {{vm.creditCard.cardType}}
+            %p.h5
+              %label Expires :
+              {{vm.creditCard.expirationMonth}}/{{vm.creditCard.expirationYear}}
+          .col-md-5.text-right
+            %a.btn.btn-lg.btn-default{ href: '{{vm.creditCard.detailsLink}}' }
+              View Details...
     %hr
     %article.well.well-sm
       %header
@@ -20,28 +28,24 @@
           Billing Address
           %small
             %label
-              %input{ type: 'checkbox' } Same as shipping?
+              %input{ type: 'checkbox' } Same as billing?
       .form-group
         %label.sr-only{ for: 'street-address' } Street Address
         %input.form-control{ type: 'text', name: 'street-address',
-                              value: '123 Any St' }
-      .form-group
-        %label.sr-only{ for: 'street-address-extra' } Street Address Extra
-        %input.form-control{ type: 'text', name: 'street-address-extra',
-                              value: 'Unit 101' }
+                              'ng-model': 'vm.customer.billing_street' }
       .row
         .col-md-6
           .form-group
             %label.sr-only{ for: 'city' } City
             %input.form-control{ type: 'text', name: 'city',
-                                value: 'Washington' }
+                                'ng-model': 'vm.customer.billing_city' }
         .col-md-2
           .form-group
             %label.sr-only{ for: 'state' } State
             %input.form-control{ type: 'text', name: 'state',
-                                value: 'DC' }
+                                'ng-model': 'vm.customer.billing_state' }
         .col-md-4
           .form-group
             %label.sr-only{ for: 'zip' } Zip
             %input.form-control{ type: 'text', name: 'zip',
-                                value: '20001' }
+                                'ng-model': 'vm.customer.billing_zipcode' }
