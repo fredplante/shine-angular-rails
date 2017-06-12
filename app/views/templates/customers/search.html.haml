@@ -26,16 +26,8 @@
 
   %ol.list-group
     %li.list-group-item.clearfix{ 'ng-repeat': 'customer in vm.customers' }
-      %h3.pull-right
-        %small.text-uppercase Joined
-        {{customer.created_at | date}}
-      %h2.h3
-        {{customer.first_name}} {{customer.last_name}}
-        %small {{customer.username}}
-      .pull-right
-        %button{ class: 'btn btn-small btn-primary',
-          'ng-click': 'vm.viewDetails(customer)' } View Details...
-      %h4 {{customer.email}}
+      %customer-summary{ cust: 'customer',
+                          'view-details-function': 'vm.viewDetails' }
 
   %nav
     %ul.pager
