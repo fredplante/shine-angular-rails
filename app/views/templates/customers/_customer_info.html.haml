@@ -4,27 +4,37 @@
   %section.panel-body
     .row
       .col-md-4
-        .form-group
-          %label.sr-only{ for: 'first-name' } First Name
-          %input.form-control{ type: 'text', name: 'first-name',
+        .form-group{ 'ng-class': "{'has-error': vm.form.firstName.$invalid && vm.form.firstName.$dirty,'has-success': vm.form.firstName.$valid && vm.form.firstName.$touched}" }
+          %label.sr-only{ for: 'firstName' } First Name
+          %input.form-control{ type: 'text', name: 'firstName', required: true,
                               'ng-model': 'vm.customer.first_name' }
+          %p.help-block{ 'ng-messages': 'vm.form.firstName.$error' }
+            %span{ 'ng-message': 'required' } First Name is required
       .col-md-4
-        .form-group
-          %label.sr-only{ for: 'last-name' } Last Name
-          %input.form-control{ type: 'text', name: 'last-name',
+        .form-group{ 'ng-class': "{'has-error': vm.form.lastName.$invalid && vm.form.lastName.$dirty,'has-success': vm.form.lastName.$valid && vm.form.lastName.$touched}" }
+          %label.sr-only{ for: 'lastName' } Last Name
+          %input.form-control{ type: 'text', name: 'lastName', required: true,
                                 'ng-model': 'vm.customer.last_name' }
+          %p.help-block{ 'ng-messages': 'vm.form.lastName.$error' }
+            %span{ 'ng-message': 'required' } Last Name is required
       .col-md-4
-        .form-group
+        .form-group{ 'ng-class': "{'has-error': vm.form.username.$invalid && vm.form.username.$dirty,'has-success': vm.form.username.$valid && vm.form.username.$touched}" }
           %label.sr-only{ for: 'username' } Username
           .input-group
             .input-group-addon @
-            %input.form-control{ type: 'text', name: 'username',
+            %input.form-control{ type: 'text', name: 'username', required: true,
                                   'ng-model': 'vm.customer.username' }
+          %p.help-block{ 'ng-messages': 'vm.form.username.$error' }
+            %span{ 'ng-message': 'required' } Username is required
       .col-md-12
-        .form-group
+        .form-group{ 'ng-class': "{'has-error': vm.form.email.$invalid && vm.form.email.$dirty,'has-success': vm.form.email.$valid && vm.form.email.$touched}" }
           %label.sr-only{ for: 'email' } Email
-          %input.form-control{ type: 'text', name: 'email',
+          %input.form-control{ type: 'text', name: 'email', required: true,
                               'ng-model': 'vm.customer.email' }
+          %p.help-block{ 'ng-messages': 'vm.form.email.$error' }
+            %span{ 'ng-message': 'required' } Email is required
+            %span{ 'ng-message': 'email' } Email must look like an email
+
   %footer.panel-footer
     %label{ for: 'joined' } Joined
     {{ customer.joined_at | date }}
@@ -32,20 +42,36 @@
   %header.panel-heading
     %h2.h4 Shipping Address
   %section.panel-body
-    .form-group
-      %label.sr-only{ for: 'street-address' } Street Address
-      %input.form-control{ type: 'text', name: 'street-address',
+    .form-group{ 'ng-class': "{'has-error': vm.form.shippingStreet.$invalid && vm.form.shippingStreet.$dirty,'has-success': vm.form.shippingStreet.$valid && vm.form.shippingStreet.$touched}" }
+      %label.sr-only{ for: 'shippingStreet' } Street Address
+      %input.form-control{ type: 'text', name: 'shippingStreet', required: true,
                             'ng-model': 'vm.customer.shipping_street' }
-    .row.form-group
+      %p.help-block{ 'ng-messages': 'vm.form.shippingStreet.$error' }
+        %span{ 'ng-message': 'required' } Street is required
+    .row
       .col-md-6
-        %label.sr-only{ for: 'city' } City
-        %input.form-control{ type: 'text', name: 'city',
-                            'ng-model': 'vm.customer.shipping_city' }
+        .form-group{ 'ng-class': "{'has-error': vm.form.shippingCity.$invalid && vm.form.shippingCity.$dirty,'has-success': vm.form.shippingCity.$valid && vm.form.shippingCity.$touched}" }
+          %label.sr-only{ for: 'shippingCity' } City
+          %input.form-control{ type: 'text', name: 'shippingCity', required: true,
+                              'ng-model': 'vm.customer.shipping_city' }
+          %p.help-block{ 'ng-messages': 'vm.form.shippingCity.$error' }
+            %span{ 'ng-message': 'required' } City is required
       .col-md-2
-        %label.sr-only{ for: 'state' } State
-        %input.form-control{ type: 'text', name: 'state',
-                              'ng-model': 'vm.customer.shipping_state' }
+        .form-group{ 'ng-class': "{'has-error': vm.form.shippingState.$invalid && vm.form.shippingState.$dirty,'has-success': vm.form.shippingState.$valid && vm.form.shippingState.$touched}" }
+          %label.sr-only{ for: 'shippingState' } State
+          %input.form-control{ type: 'text', name: 'shippingState',
+                                required: true, pattern: '[A-Z][A-Z]',
+                                'ng-model': 'vm.customer.shipping_state' }
+          %p.help-block{ 'ng-messages': 'vm.form.shippingState.$error' }
+            %span{ 'ng-message': 'required' } State is required
+            %span{ 'ng-message': 'pattern' }
+              State must look like a two-letter state code
       .col-md-4
-        %label.sr-only{ for: 'zip' } Zip
-        %input.form-control{ type: 'text', name: 'zip',
-                              'ng-model': 'vm.customer.shipping_zipcode' }
+        .form-group{ 'ng-class': "{'has-error': vm.form.shippingZip.$invalid && vm.form.shippingZip.$dirty,'has-success': vm.form.shippingZip.$valid && vm.form.shippingZip.$touched}" }
+          %label.sr-only{ for: 'shippingZip' } Zip
+          %input.form-control{ type: 'text', name: 'shippingZip', required: true,
+                                pattern: '\d\d\d\d\d',
+                                'ng-model': 'vm.customer.shipping_zipcode' }
+          %p.help-block{ 'ng-messages': 'vm.form.shippingZip.$error' }
+            %span{ 'ng-message': 'required' } Zip is required
+            %span{ 'ng-message': 'pattern' } Zip must be five digits

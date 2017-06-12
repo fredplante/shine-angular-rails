@@ -1,0 +1,70 @@
+%article.panel.panel-default
+  %header.panel-heading
+    %h2.h4 Billing Info
+  %section.panel-body
+    %article{ 'ng-controller': 'CustomerCreditCardController as vm',
+              'ng-init': 'vm.setCardholderId($parent.vm.customerId)' }
+      .row
+        %div{ 'ng-if': '!vm.creditCard.$resolved' }
+          .col-md-10.col-md-offset-1
+            %aside.progress
+              .progress-bar.progress-bar-striped.active
+                Loading...
+        %div{ 'ng-if': 'vm.creditCard.$resolved' }
+          .col-md-7
+            %p.h4
+              ****-****-****-{{vm.creditCard.lastFour}}
+              %span.label.label-success {{vm.creditCard.cardType}}
+            %p.h5
+              %label Expires :
+              {{vm.creditCard.expirationMonth}}/{{vm.creditCard.expirationYear}}
+          .col-md-5.text-right
+            %a.btn.btn-lg.btn-default{ href: '{{vm.creditCard.detailsLink}}' }
+              View Details...
+    %hr
+    %article.well.well-sm
+      %header
+        %h1.h5
+          Billing Address
+          %small
+            %label
+              %input{ type: 'checkbox' } Same as billing?
+      .form-group{ 'ng-class': "{'has-error': vm.form.billingStreet.$invalid && vm.form.billingStreet.$dirty,'has-success': vm.form.billingStreet.$valid && vm.form.billingStreet.$touched}" }
+        %label.sr-only{ for: 'billingStreet' } Street Address
+        %input.form-control{ type: 'text', name: 'billingStreet',
+                              required: true,
+                              'ng-model': 'vm.customer.billing_street' }
+        %p.help-block{ 'ng-messages': 'vm.form.billingStreet.$error' }
+          %span{ 'ng-message': 'required' } Street is required
+      .row
+        .col-md-6
+          .form-group{ 'ng-class': "{'has-error': vm.form.billingCity.$invalid && vm.form.billingCity.$dirty,'has-success': vm.form.billingCity.$valid && vm.form.billingCity.$touched}" }
+            %label.sr-only{ for: 'billingCity' } City
+            %input.form-control{ type: 'text', name: 'billingCity',
+                                  required: true,
+                                  'ng-model': 'vm.customer.billing_city' }
+            %p.help-block{ 'ng-messages': 'vm.form.billingCity.$error' }
+              %span{ 'ng-message': 'required' } City is required
+        .col-md-2
+          .form-group{ 'ng-class': "{'has-error': vm.form.billingState.$invalid && vm.form.billingState.$dirty,'has-success': vm.form.billingState.$valid && vm.form.billingState.$touched}" }
+            %label.sr-only{ for: 'billingState' } State
+            %input.form-control{ type: 'text', name: 'billingState',
+                                  required: true, pattern: '[A-Z][A-Z]',
+                                  'ng-model': 'vm.customer.billing_state' }
+            %p.help-block{ 'ng-messages': 'vm.form.billingState.$error' }
+              %span{ 'ng-message': 'required' } State is required
+              %span{ 'ng-message': 'pattern' }
+                State must look like a two-letter state code
+        .col-md-4
+          .form-group{ 'ng-class': "{'has-error': vm.form.billingZip.$invalid && vm.form.billingZip.$dirty,'has-success': vm.form.billingZip.$valid && vm.form.billingZip.$touched}" }
+            %label.sr-only{ for: 'billingZip' } Zip
+            %input.form-control{ type: 'text', name: 'billingZip',
+                                  required: true, pattern: '\d\d\d\d\d',
+                                'ng-model': 'vm.customer.billing_zipcode' }
+            %p.help-block{ 'ng-messages': 'vm.form.billingZip.$error' }
+              %span{ 'ng-message': 'required' } Zip is required
+              %span{ 'ng-message': 'pattern' } Zip must be five digits
+    .text-right
+      %button.btn.btn-lg.btn-primary{ 'ng-click': 'vm.save()',
+          'ng-disabled': "vm.form.$invalid || vm.form.$pristine" }
+        Save Changes

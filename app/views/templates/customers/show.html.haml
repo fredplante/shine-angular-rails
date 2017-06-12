@@ -1,6 +1,6 @@
-%form
+%form{ novalidate: true, name: 'vm.form' }
   .row
     .col-md-6
       = render 'templates/customers/customer_info'
     .col-md-6
-      = render 'templates/customers/shipping_info'
+      = render 'templates/customers/billing_info'

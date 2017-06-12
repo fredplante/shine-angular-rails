@@ -13,9 +13,10 @@
 //= require rails-ujs
 //= require angular
 //= require angular-resource
+//= require angular-messages
 //= require angular-route
 //= require_self
 //= require ./routes
 //= require_tree ./controllers
 
-angular.module('app', ['ngRoute', 'ngResource'])
+angular.module('app', ['ngRoute', 'ngResource', 'ngMessages'])

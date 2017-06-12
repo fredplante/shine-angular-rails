@@ -11,7 +11,7 @@ class CustomersController < ApplicationController
     else
       @customers = []
     end
-    
+
     respond_to do |format|
       format.html {}
       format.json { render json: @customers }
@@ -23,5 +23,11 @@ class CustomersController < ApplicationController
     respond_to do |format|
       format.json { render json: customer_detail }
     end
+  end
+
+  def update
+    customer_detail = CustomerDetail.find(params[:id])
+    customer_detail.update(params)
+    head :ok
   end
 end
