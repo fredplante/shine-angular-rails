@@ -22,7 +22,10 @@
         return
       }
 
-      mostRecentSearchTerm = searchTerm
+      if (mostRecentSearchTerm !== searchTerm) {
+        mostRecentSearchTerm = searchTerm
+        page = 1
+      }
 
       $http.get('/customers.json', {
         'params': {
