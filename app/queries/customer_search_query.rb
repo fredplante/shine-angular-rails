@@ -1,29 +1,29 @@
 class CustomerSearchQuery
-  attr_reader :relation, :where_clause, :where_args, :order
+  attr_reader :relation, :where_clause, :where_args, :order, :term
 
   def initialize(relation: Customer.all)
     @relation = relation
   end
 
-  def search(term:)
-    @term = term.downcase
+  def search(search_term:)
+    @term = search_term.downcase
     @where_clause = ""
     @where_args = {}
-    if term =~ /@/
-      build_for_email_search(term)
+    if @term =~ /@/
+      build_for_email_search
     else
-      build_for_name_search(term)
+      build_for_name_search
     end
     relation.where(where_clause, where_args).order(order)
   end
 
   private
 
-  def build_for_name_search(search_term)
+  def build_for_name_search
     where_clause << case_insensitive_search(:first_name)
-    where_args[:first_name] = starts_with(search_term)
+    where_args[:first_name] = starts_with(term)
     where_clause << " OR #{case_insensitive_search(:last_name)}"
-    where_args[:last_name] = starts_with(search_term)
+    where_args[:last_name] = starts_with(term)
     @order = "last_name asc"
   end
 
@@ -39,15 +39,15 @@ class CustomerSearchQuery
     email.gsub(/@.*$/,'').gsub(/[0-9]+/,'')
   end
 
-  def build_for_email_search(search_term)
+  def build_for_email_search
     where_clause << case_insensitive_search(:first_name)
-    where_args[:first_name] = starts_with(extract_name(search_term))
+    where_args[:first_name] = starts_with(extract_name(term))
     where_clause << " OR #{case_insensitive_search(:last_name)}"
-    where_args[:last_name] = starts_with(extract_name(search_term))
+    where_args[:last_name] = starts_with(extract_name(term))
     where_clause << " OR #{case_insensitive_search(:email)}"
-    where_args[:email] = search_term
+    where_args[:email] = term
     @order = "lower(email) = " +
-      ActiveRecord::Base.connection.quote(search_term) +
+      ActiveRecord::Base.connection.quote(term) +
       " desc, last_name asc"
   end
 end

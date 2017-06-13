@@ -6,7 +6,7 @@ class CustomersController < ApplicationController
 
     if params[:keywords].present?
       @keywords = params[:keywords]
-      @customers = CustomerSearchQuery.new.search(term: @keywords)
+      @customers = CustomerSearchQuery.new.search(search_term: @keywords)
                     .offset(PAGE_SIZE * (@page - 1)).limit(PAGE_SIZE)
     else
       @customers = []
