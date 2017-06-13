@@ -1,13 +1,24 @@
 class CustomerDetail < ActiveRecord::Base
   self.primary_key = 'customer_id'
 
+  def credit_card_token
+    self.customer_id % 1000
+  end
+  
+  def serializable_hash(options=nil)
+    super(options).merge(credit_card_token: credit_card_token)
+  end
+
   def update(params)
     Customer.find(self.customer_id).update(
       params.permit(:first_name, :last_name, :username, :email))
-    Address.find(self.billing_address_id).update(
-      address_attributes(params,"billing"))
-    Address.find(self.shipping_address_id).update(
-      address_attributes(params, "shipping"))
+
+    billing_params = address_attributes(params,"billing")
+
+    Address.find(self.billing_address_id).update(billing_params)
+
+    shipping_params = address_attributes(params,"shipping")
+    Address.find(self.shipping_address_id).update(shipping_params)
   end
 
   private

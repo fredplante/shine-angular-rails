@@ -1,6 +1,8 @@
 %article.panel.panel-primary
   %header.panel-heading
-    %h1.h3 Customer
+    %h1.h3
+      %i.glyphicon.glyphicon-user{ 'aria-hidden': 'true' }
+      Customer
   %section.panel-body
     .row
       .col-md-4
@@ -40,7 +42,9 @@
     {{ customer.joined_at | date }}
 %article.panel.panel-default
   %header.panel-heading
-    %h2.h4 Shipping Address
+    %h2.h4
+    %i.glyphicon.glyphicon-envelope{ 'aria-hidden': 'true' }
+    Shipping Address
   %section.panel-body
     .form-group{ 'ng-class': "{'has-error': vm.form.shippingStreet.$invalid && vm.form.shippingStreet.$dirty,'has-success': vm.form.shippingStreet.$valid && vm.form.shippingStreet.$touched}" }
       %label.sr-only{ for: 'shippingStreet' } Street Address
@@ -49,14 +53,14 @@
       %p.help-block{ 'ng-messages': 'vm.form.shippingStreet.$error' }
         %span{ 'ng-message': 'required' } Street is required
     .row
-      .col-md-6
+      .col-md-6.col-xs-12
         .form-group{ 'ng-class': "{'has-error': vm.form.shippingCity.$invalid && vm.form.shippingCity.$dirty,'has-success': vm.form.shippingCity.$valid && vm.form.shippingCity.$touched}" }
           %label.sr-only{ for: 'shippingCity' } City
           %input.form-control{ type: 'text', name: 'shippingCity', required: true,
                               'ng-model': 'vm.customer.shipping_city' }
           %p.help-block{ 'ng-messages': 'vm.form.shippingCity.$error' }
             %span{ 'ng-message': 'required' } City is required
-      .col-md-2
+      .col-md-2.col-xs-4
         .form-group{ 'ng-class': "{'has-error': vm.form.shippingState.$invalid && vm.form.shippingState.$dirty,'has-success': vm.form.shippingState.$valid && vm.form.shippingState.$touched}" }
           %label.sr-only{ for: 'shippingState' } State
           %input.form-control{ type: 'text', name: 'shippingState',
@@ -66,7 +70,7 @@
             %span{ 'ng-message': 'required' } State is required
             %span{ 'ng-message': 'pattern' }
               State must look like a two-letter state code
-      .col-md-4
+      .col-md-4.col-xs-8
         .form-group{ 'ng-class': "{'has-error': vm.form.shippingZip.$invalid && vm.form.shippingZip.$dirty,'has-success': vm.form.shippingZip.$valid && vm.form.shippingZip.$touched}" }
           %label.sr-only{ for: 'shippingZip' } Zip
           %input.form-control{ type: 'text', name: 'shippingZip', required: true,

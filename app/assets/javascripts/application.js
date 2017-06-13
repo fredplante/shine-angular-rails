@@ -15,10 +15,11 @@
 //= require angular-resource
 //= require angular-messages
 //= require angular-route
+//= require angular-bootstrap
 //= require_self
 //= require ./routes
 //= require_tree ./services
 //= require_tree ./components
 //= require_tree ./controllers
 
-angular.module('app', ['ngRoute', 'ngResource', 'ngMessages'])
+angular.module('app', ['ngRoute', 'ngResource', 'ngMessages', 'ui.bootstrap'])

@@ -1,0 +1,23 @@
+@import "bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+@import "bootstrap-sass/assets/stylesheets/bootstrap";
+/*
+ *= require_tree .
+ *= require_self
+ */
+.progress-bar {
+  width: 100%;
+}
+
+.margin-top-none {
+  margin-top: 0;
+}
+
+.panel-heading h1,
+.panel-heading h2,
+.panel-heading h3,
+.panel-heading h4,
+.panel-heading h5,
+.panel-heading h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}

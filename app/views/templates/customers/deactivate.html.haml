@@ -1,0 +1,22 @@
+%header.modal-header
+  %button.close{ type: 'button', 'ng-click': "vm.nevermind()" }
+    %span{ 'aria-hidden': 'true' }
+      &times;
+
+  %h1.modal-title
+    Deactivate Customer
+%section.modal-body
+  This will
+  %strong permanently
+  deactivate the customer.
+  They
+  %strong will not
+  be able to log in or use our service.
+
+%footer.modal-footer
+  %button.btn.btn-danger{ type: 'button', 'ng-click': 'vm.deactivate()' }
+    %i.glyphicon.glyphicon-ok
+    Deactivate
+  %button.btn.btn-info{ type: 'button', 'ng-click': 'vm.nevermind()' }
+    %i.glyphicon.glyphicon-remove
+    Nevermind

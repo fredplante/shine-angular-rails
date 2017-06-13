@@ -25,5 +25,12 @@ module ShineAngularRails
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.active_record.schema_format = :sql
+    config.assets.paths << Rails.root.join("vendor",
+                                            "assets",
+                                            "components",
+                                            "bootstrap-sass",
+                                            "assets",
+                                            "fonts")
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf|woff2)\z/
   end
 end

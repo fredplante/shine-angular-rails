@@ -1,6 +1,8 @@
 %article.panel.panel-default
   %header.panel-heading
-    %h2.h4 Billing Info
+    %h2.h4
+    %i.glyphicon.glyphicon-credit-card{ 'aria-hidden': 'true' }
+    Billing Info
   %section.panel-body
     %article{ 'ng-controller': 'CustomerCreditCardController as vm',
               'ng-init': 'vm.setCardholderId($parent.vm.customerId)' }
@@ -37,7 +39,7 @@
         %p.help-block{ 'ng-messages': 'vm.form.billingStreet.$error' }
           %span{ 'ng-message': 'required' } Street is required
       .row
-        .col-md-6
+        .col-md-6.col-xs-12
           .form-group{ 'ng-class': "{'has-error': vm.form.billingCity.$invalid && vm.form.billingCity.$dirty,'has-success': vm.form.billingCity.$valid && vm.form.billingCity.$touched}" }
             %label.sr-only{ for: 'billingCity' } City
             %input.form-control{ type: 'text', name: 'billingCity',
@@ -45,7 +47,7 @@
                                   'ng-model': 'vm.customer.billing_city' }
             %p.help-block{ 'ng-messages': 'vm.form.billingCity.$error' }
               %span{ 'ng-message': 'required' } City is required
-        .col-md-2
+        .col-md-2.col-xs-8
           .form-group{ 'ng-class': "{'has-error': vm.form.billingState.$invalid && vm.form.billingState.$dirty,'has-success': vm.form.billingState.$valid && vm.form.billingState.$touched}" }
             %label.sr-only{ for: 'billingState' } State
             %input.form-control{ type: 'text', name: 'billingState',
@@ -55,7 +57,7 @@
               %span{ 'ng-message': 'required' } State is required
               %span{ 'ng-message': 'pattern' }
                 State must look like a two-letter state code
-        .col-md-4
+        .col-md-4.col-xs-4
           .form-group{ 'ng-class': "{'has-error': vm.form.billingZip.$invalid && vm.form.billingZip.$dirty,'has-success': vm.form.billingZip.$valid && vm.form.billingZip.$touched}" }
             %label.sr-only{ for: 'billingZip' } Zip
             %input.form-control{ type: 'text', name: 'billingZip',
@@ -65,6 +67,10 @@
               %span{ 'ng-message': 'required' } Zip is required
               %span{ 'ng-message': 'pattern' } Zip must be five digits
     .text-right
+      %button.btn.btn-lg.btn-danger{ 'ng-click': 'vm.deactivate()' }
+        %i.glyphicon.glyphicon-ban-circle{ 'aria-hidden': 'true' }
+        Deactivate
       %button.btn.btn-lg.btn-primary{ 'ng-click': 'vm.save()',
           'ng-disabled': "vm.form.$invalid || vm.form.$pristine" }
+        %i.glyphicon.glyphicon-save{ 'aria-hidden': 'true' }
         Save Changes

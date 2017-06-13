@@ -1,7 +1,10 @@
 %header
   %customer-summary{ cust: 'vm.customer' }
   %hr
-
+%section{ 'ng-if': 'vm.alert' }
+  %div{ 'uib-alert': true, 'ng-class': "'alert-' + vm.alert.type",
+        close: 'vm.closeAlert()' }
+    {{vm.alert.message}}
 %form{ novalidate: true, name: 'vm.form' }
   .row
     .col-md-6
